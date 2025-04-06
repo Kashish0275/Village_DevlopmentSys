@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Festival 2024 - Organized by NGO Volunteers</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4 {
+            text-align: center;
+            color: #34495e;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background-image: url('https://via.placeholder.com/1200x500?text=Cultural+Festival+2024');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 4rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* Posters Section */
+        .posters {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .poster {
+            width: 30%;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .poster img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .poster h3 {
+            padding: 15px;
+            color: #e74c3c;
+            font-size: 1.5rem;
+        }
+
+        .poster p {
+            padding: 0 15px 15px;
+        }
+
+        .poster:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Highlights Section */
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .highlight {
+            background-color: #ecf0f1;
+            padding: 20px;
+            width: 30%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .highlight h4 {
+            color: #3498db;
+        }
+
+        .highlight img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* NGO Involvement Section */
+        .ngo-involvement {
+            background-color: #f7f7f7;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .ngo-involvement ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .ngo-involvement li {
+            background-color: #ffffff;
+            margin: 10px;
+            padding: 20px;
+            border-left: 5px solid #2980b9;
+            border-radius: 10px;
+            width: 45%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .ngo-involvement li strong {
+            display: block;
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+
+        .ngo-involvement li a {
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .ngo-involvement li:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Events Section */
+        .events {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .events ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .events li {
+            background-color: #e0f7fa;
+            margin: 10px;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            border-radius: 10px;
+            width: 30%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background-color: #2980b9;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
+        }
+
+        .contact p strong {
+            display: block;
+            color: #ecf0f1;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #34495e;
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .posters, .highlights, .ngo-involvement ul, .events ul {
+                flex-direction: column;
+            }
+
+            .poster, .highlight, .ngo-involvement li, .events li {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Cultural Festival 2024</h1>
+</div>
+
+<!-- Poster Section -->
+<div class="container">
+    <h2>Featured Festival Posters</h2>
+    <div class="posters">
+        <div class="poster">
+            <img src="https://via.placeholder.com/400x250?text=Music+Night" alt="Music Night">
+            <h3>Music & Dance Night</h3>
+            <p>Join us for an evening of traditional and modern music performances by local artists.</p>
+        </div>
+        <div class="poster">
+            <img src="https://via.placeholder.com/400x250?text=Craft+Fair" alt="Craft Fair">
+            <h3>Craft Exhibition</h3>
+            <p>Explore handmade crafts and artworks created by local artisans and NGOs.</p>
+        </div>
+        <div class="poster">
+            <img src="https://via.placeholder.com/400x250?text=Cooking+Show" alt="Cooking Show">
+            <h3>Traditional Cooking Show</h3>
+            <p>Watch local chefs prepare delicious dishes, offering you a taste of village cuisine.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Festival Highlights -->
+<div class="container">
+    <h2>Festival Highlights</h2>
+    <div class="highlights">
+        <div class="highlight">
+            <img src="https://via.placeholder.com/300x200?text=Workshops" alt="Workshops">
+            <h4>Workshops & Activities</h4>
+            <p>Join in on hands-on workshops led by experienced volunteers, offering a chance to learn new skills.</p>
+        </div>
+        <div class="highlight">
+            <img src="https://via.placeholder.com/300x200?text=Parade" alt="Parade">
+            <h4>Cultural Parade</h4>
+            <p>Watch or participate in the cultural parade, featuring traditional costumes and dance forms.</p>
+        </div>
+        <div class="highlight">
+            <img src="https://via.placeholder.com/300x200?text=Health+Camp" alt="Health Camp">
+            <h4>Free Health Camp</h4>
+            <p>NGOs will offer free health check-ups and wellness sessions for all festival attendees.</p>
+        </div>
+    </div>
+</div>
+
+<!-- NGO Involvement Section -->
+<div class="ngo-involvement container">
+    <h2>NGO Volunteer Contributions</h2>
+    <ul>
+        <li>
+            <strong>Green Earth Foundation</strong> Promoting eco-friendly practices during the festival. <a href="#">Learn More</a>
+        </li>
+        <li>
+            <strong>Health First Foundation</strong> Offering free medical services to villagers. <a href="#">Learn More</a>
+        </li>
+        <li>
+            <strong>Artisans United</strong> Supporting local craftspersons with workshops and exhibitions. <a href="#">Learn More</a>
+        </li>
+        <li>
+            <strong>Education for All</strong> Providing educational support for children and adults. <a href="#">Learn More</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Events Section -->
+<div class="events container">
+    <h2>Upcoming Events</h2>
+    <ul>
+        <li><strong>Music & Dance Night:</strong> October 12, 2024</li>
+        <li><strong>Craft Workshop:</strong> October 13, 2024</li>
+        <li><strong>Cooking Masterclass:</strong> October 14, 2024</li>
+    </ul>
+</div>
+
+<!-- Contact Section -->
+<div class="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Phone:</strong> +123 456 789</p>
+    <p><strong>Email:</strong> culturalfest@village.org</p>
+    <p><strong>Office Hours:</strong> Monday to Friday, 9 AM - 6 PM</p>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>&copy; 2024 Cultural Festival | Organized by NGO Volunteers</p>
+</div>
+
+</body>
+</html>

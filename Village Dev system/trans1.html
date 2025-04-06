@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Development System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            background: url('agriculture.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .translate-dropdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .translate-dropdown select {
+            padding: 5px;
+            font-size: 14px;
+            border: none;
+            background-color: #3a6ea5;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Village Development System</h1>
+        <p>Enhancing Community Well-being</p>
+
+        <!-- Translate Dropdown -->
+        <div class="translate-dropdown">
+            <select onchange="translatePage(this)">
+                <option value="">Translate</option>
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="mr">Marathi</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Our Features</h2>
+            <div class="feature">
+                <!-- Add your content here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function translatePage(language) {
+            var googleTranslateElement = document.createElement('script');
+            googleTranslateElement.type = 'text/javascript';
+            googleTranslateElement.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.body.appendChild(googleTranslateElement);
+
+            window.googleTranslateElementInit = function() {
+                new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,hi,mr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                var translateElement = document.querySelector('.goog-te-combo');
+                if (translateElement) {
+                    translateElement.value = language;
+                    translateElement.dispatchEvent(new Event('change'));
+                }
+            };
+        }
+    </script>
+</body>
+</html>

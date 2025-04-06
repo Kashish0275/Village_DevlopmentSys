@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Calendar with Reminders and National Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .calendar {
+            display: inline-block;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .calendar-header button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .calendar-header button:hover {
+            background-color: #45a049;
+        }
+
+        .calendar-header h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 40px);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .day {
+            padding: 10px;
+            border-radius: 50%;
+            text-align: center;
+            position: relative;
+        }
+
+        .day.current {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .day.reminder {
+            background-color: #FFD700;
+            color: black;
+        }
+
+        .event {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            font-size: 10px;
+            color: blue;
+        }
+
+        .day:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 40px);
+            font-weight: bold;
+        }
+
+        /* Reminder Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15% auto;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .modal input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .modal button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calendar">
+        <div class="calendar-header">
+            <button id="prev-month">&lt;</button>
+            <h2 id="calendar-title">Month Year</h2>
+            <button id="next-month">&gt;</button>
+        </div>
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div class="days" id="calendar-days"></div>
+    </div>
+
+    <!-- Reminder Modal -->
+    <div id="reminder-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-date">Reminder for Date</h3>
+            <input type="text" id="reminder-input" placeholder="Enter reminder">
+            <button onclick="saveReminder()">Save Reminder</button>
+            <button onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let reminders = {};  // Store reminders for each date
+        let selectedDay = null;
+
+        // Predefined Indian national events
+        const nationalEvents = {
+            "26-1": "Republic Day",
+            "15-8": "Independence Day",
+            "2-10": "Gandhi Jayanti",
+            "14-11": "Children's Day",
+            "25-12": "Christmas",
+            // Add more events as needed
+        };
+
+        // Function to create a calendar
+        function createCalendar(month, year) {
+            const today = new Date();
+            const currentDay = today.getDate();
+            const isCurrentMonth = month === today.getMonth() && year === today.getFullYear();
+
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Array of month names
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            // Set the title with month and year
+            document.getElementById('calendar-title').innerText = `${monthNames[month]} ${year}`;
+
+            // Get the calendar days container
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = '';
+
+            // Add empty slots for days before the first day of the month
+            for (let i = 0; i < firstDayOfMonth; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.classList.add('day');
+                calendarDays.appendChild(emptyDay);
+            }
+
+            // Add the actual days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('day');
+                dayElement.innerText = day;
+
+                // Check if there is a reminder for this day
+                const dateKey = `${day}-${month + 1}-${year}`;
+                if (reminders[dateKey]) {
+                    dayElement.classList.add('reminder');
+                }
+
+                // Highlight the current day if it's the current month
+                if (isCurrentMonth && day === currentDay) {
+                    dayElement.classList.add('current');
+                }
+
+                // Add event indicator if there is a national event
+                const eventKey = `${day}-${month + 1}`;
+                if (nationalEvents[eventKey]) {
+                    const eventElement = document.createElement('div');
+                    eventElement.classList.add('event');
+                    eventElement.innerText = nationalEvents[eventKey];
+                    dayElement.appendChild(eventElement);
+                }
+
+                // Add click event to open the reminder modal
+                dayElement.addEventListener('click', () => openModal(day, month + 1, year));
+
+                calendarDays.appendChild(dayElement);
+            }
+        }
+
+        // Function to handle month navigation
+        function navigateMonth(direction) {
+            if (direction === 'next') {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+            } else if (direction === 'prev') {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+            }
+
+            createCalendar(currentMonth, currentYear);
+        }
+
+        // Open the reminder modal
+        function openModal(day, month, year) {
+            selectedDay = `${day}-${month}-${year}`;
+            document.getElementById('modal-date').innerText = `Reminder for ${day}/${month}/${year}`;
+            document.getElementById('reminder-input').value = reminders[selectedDay] || '';
+            document.getElementById('reminder-modal').style.display = 'block';
+        }
+
+        // Close the reminder modal
+        function closeModal() {
+            document.getElementById('reminder-modal').style.display = 'none';
+        }
+
+        // Save the reminder
+        function saveReminder() {
+            const reminderText = document.getElementById('reminder-input').value;
+            if (reminderText) {
+                reminders[selectedDay] = reminderText;
+            } else {
+                delete reminders[selectedDay];  // Remove reminder if the input is empty
+            }
+
+            closeModal();
+            createCalendar(currentMonth, currentYear);  // Refresh the calendar
+        }
+
+        // Event listeners for navigation buttons
+        document.getElementById('next-month').addEventListener('click', () => navigateMonth('next'));
+        document.getElementById('prev-month').addEventListener('click', () => navigateMonth('prev'));
+
+        // Initialize the calendar with the current month and year
+        window.onload = () => {
+            createCalendar(currentMonth, currentYear);
+        };
+    </script>
+
+</body>
+</html>

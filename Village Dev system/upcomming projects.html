@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upcoming Village Projects</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(45deg, #FF6347, #FF4500); /* Red gradient */
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        /* Project List Section */
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Individual Project Cards */
+        .project {
+            background-color: #FFFACD; /* Light yellow */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project h2 {
+            font-size: 1.8em;
+            color: #FF4500; /* Strong red */
+            margin-bottom: 10px;
+        }
+
+        .project .tag {
+            display: inline-block;
+            background-color: #FF6347; /* Tomato red */
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .project .date {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .project .description {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .project strong {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .read-more {
+            color: #FF4500; /* Strong red */
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #FF6347; /* Tomato red */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            color: yellow; /* Bright yellow */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Upcoming Projects in Our Village</h1>
+        <p>Stay updated with the latest initiatives aimed at improving our community and environment.</p>
+    </header>
+
+    <section class="project-list">
+
+        <!-- Project 1 -->
+        <article class="project">
+            <h2>1. Community Center Renovation</h2>
+            <span class="tag">Social Welfare</span>
+            <img src="https://unsplash.com/photos/c2Y16tC3yO8" alt="Community Center Renovation Poster">
+            <p class="date">Starting: October 2024 | Completion: January 2025</p>
+            <p class="description">
+                The village community center will be renovated to include modern amenities, better seating, and a digital library.
+                This project aims to create a hub for social gatherings and learning. Volunteers are encouraged to participate in
+                the planning process.
+            </p>
+            <a href="#" class="read-more">Read more...</a>
+            <strong>Project Leader: John Doe</strong>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project">
+            <h2>2. Village Greenery Initiative</h2>
+            <span class="tag">Environmental</span>
+            <img src="https://unsplash.com/photos/qbcWGr_YGrs" alt="Village Greenery Initiative Poster">
+            <p class="date">Starting: November 2024 | Completion: March 2025</p>
+            <p class="description">
+                A campaign to plant 500 trees around the village to create a sustainable, eco-friendly environment.
+                Schools will also be involved to help children understand the importance of trees and sustainability.
+            </p>
+            <a href="#" class="read-more">Read more...</a>
+            <strong>Project Leader: Jane Smith</strong>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project">
+            <h2>3. Clean Water Project</h2>
+            <span class="tag">Health & Sanitation</span>
+            <img src="https://unsplash.com/photos/j1HU-OyYwFU" alt="Clean Water Project Poster">
+            <p class="date">Starting: December 2024 | Completion: April 2025</p>
+            <p class="description">
+                This project focuses on improving water quality by installing modern filtration systems. The goal is to provide
+                safe drinking water for every household, preventing water-borne diseases and ensuring the health of the community.
+            </p>
+            <a href="#" class="read-more">Read more...</a>
+            <strong>Project Leader: Sarah Lee</strong>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project">
+            <h2>4. Education for All Campaign</h2>
+            <span class="tag">Educational</span>
+            <img src="https://unsplash.com/photos/vuDXJ60mJOA" alt="Education for All Campaign Poster">
+            <p class="date">Starting: January 2025 | Ongoing</p>
+            <p class="description">
+                The village has started an initiative to ensure every child gets access to quality education. Free tutoring
+                services will be provided, along with donations of school supplies and technology.
+            </p>
+            <a href="#" class="read-more">Read more...</a>
+            <strong>Project Leader: Mark Williams</strong>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="project">
+            <h2>5. Village Recycling Program</h2>
+            <span class="tag">Environmental</span>
+            <img src="https://unsplash.com/photos/XFN8WdqBKHg" alt="Village Recycling Program Poster">
+            <p class="date">Starting: February 2025 | Ongoing</p>
+            <p class="description">
+                A recycling program will be initiated to reduce waste in the village and promote sustainability. 
+                Workshops on recycling techniques and waste management will be held.
+            </p>
+            <a href="#" class="read-more">Read more...</a>
+            <strong>Project Leader: Emily Davis</strong>
+        </article>
+
+    </section>
+
+    <footer>
+        <p>For more information on any of these projects, contact the <a href="mailto:villageoffice@village.com">village office</a>.</p>
+        <p>&copy; 2024 Village Development Committee</p>
+    </footer>
+</body>
+</html>

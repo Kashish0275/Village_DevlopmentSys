@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar 2019</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 191, 255, 0.389);
+        display: grid;
+        place-items: center;
+      }
+
+      .container {
+        width: 770px;
+        background-color: #fff;
+      }
+
+      .header {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .header #month {
+        color: #ff5252;
+        font-size: 30px;
+        font-weight: 600;
+      }
+
+      button {
+        width: 75px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        padding: 5px;
+        border-radius: 3px;
+        color: white;
+      }
+
+      .header button {
+        background-color: #ff5252;
+      }
+
+      .weekdays {
+        width: 100%;
+        display: flex;
+        background-color: #2f3640;
+        font-size: 17px;
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .weekdays div {
+        width: 100px;
+        padding: 10px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      #calendar {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .day {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        cursor: pointer;
+        margin: 5px;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 3px #cbd4c2;
+        color: #7f8fa6;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .day:hover {
+        background-color: rgba(112, 111, 211, 0.1);
+        color: #706fd3;
+      }
+
+      #currentDay {
+        background-color:rgba(255, 0, 0, 0.575);
+        color: #fff;
+      }
+
+      .event {
+        font-size: 10px;
+        padding: 3px;
+        background-color: #3d3d3d;
+        color: #fff;
+        border-radius: 5px;
+        max-height: 55px;
+        overflow: hidden;
+      }
+
+      .event.holiday {
+        background-color: palegreen;
+        color: #3d3d3d;
+      }
+
+      .plain {
+        cursor: default;
+        box-shadow: none;
+      }
+
+      #modal {
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      #addEvent,
+      #viewEvent {
+        display: none;
+        width: 350px;
+        background-color: #fff;
+        padding: 25px;
+        position: absolute;
+        z-index: 20;
+      }
+
+      #addEvent h2,
+      #viewEvent h2 {
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+
+      #txtTitle {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 25px;
+        border-radius: 3px;
+        outline: none;
+        border: 1px solid #cbd4c2;
+        font-size: 16px;
+      }
+
+      #btnSave {
+        background-color: #2ed573;
+      }
+
+      .btnClose {
+        background-color: #2f3542;
+      }
+
+      #viewEvent p {
+        margin-bottom: 20px;
+      }
+
+      #btnDelete {
+        background-color: #ea2027;
+      }
+
+      .error {
+        border-color:#ea2027 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div id="month"></div>
+        <div>
+          <button id="btnBack"><i class="fa fa-angle-left"></i></button>
+          <button id="btnNext"><i class="fa fa-angle-right"></i></button>
+        </div>
+      </div>
+      <div class="weekdays">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+      </div>
+      <div id="calendar"></div>
+    </div>
+    <div id="modal"></div>
+    <div id="addEvent">
+      <h2>Add Event</h2>
+      <input type="text" id="txtTitle" placeholder="Event Title" />
+      <button id="btnSave">Save</button>
+      <button class="btnClose">Close</button>
+    </div>
+
+    <div id="viewEvent">
+      <h2>Event</h2>
+      <p id="eventText">This is Sample Event</p>
+      <button id="btnDelete">Delete</button>
+      <button class="btnClose">Close</button>
+    </div>
+
+    <script>
+      const holidays = [
+        { hdate: "01-01-2019", holiday: "New Year's Day" },
+        { hdate: "21-01-2019", holiday: "Martin Luther King Jr. Day" },
+        { hdate: "18-02-2019", holiday: "Presidents' Day" },
+        { hdate: "27-05-2019", holiday: "Memorial Day" },
+        { hdate: "04-07-2019", holiday: "Independence Day" },
+        { hdate: "02-09-2019", holiday: "Labor Day" },
+        { hdate: "14-10-2019", holiday: "Columbus Day" },
+        { hdate: "11-11-2019", holiday: "Veterans Day" },
+        { hdate: "28-11-2019", holiday: "Thanksgiving Day" },
+        { hdate: "25-12-2019", holiday: "Christmas Day" },
+      ];
+
+      const calendar = document.querySelector("#calendar");
+      const monthBanner = document.querySelector("#month");
+      let navigation = 0;
+      let clicked = null;
+      let events = localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : [];
+      const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+      function loadCalendar() {
+        const dt = new Date();
+
+        dt.setFullYear(2019); // Set to year 2019
+
+        if (navigation != 0) {
+          dt.setMonth(new Date().getMonth() + navigation);
+        }
+        const day = dt.getDate();
+        const month = dt.getMonth();
+        const year = dt.getFullYear();
+        monthBanner.innerText = `${dt.toLocaleDateString("en-us", {
+          month: "long",
+        })} ${year}`;
+        calendar.innerHTML = "";
+        const dayInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDayofMonth = new Date(year, month, 1);
+        const dateText = firstDayofMonth.toLocaleDateString("en-us", {
+          weekday: "long",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
+
+        const dayString = dateText.split(", ")[0];
+        const emptyDays = weekdays.indexOf(dayString);
+
+        for (let i = 1; i <= dayInMonth + emptyDays; i++) {
+          const dayBox = document.createElement("div");
+          dayBox.classList.add("day");
+          const monthVal = month + 1 < 10 ? "0" + (month + 1) : month + 1;
+          const dateVal = i - emptyDays < 10 ? "0" + (i - emptyDays) : i - emptyDays;
+          const dateText = `${dateVal}-${monthVal}-${year}`;
+          if (i > emptyDays) {
+            dayBox.innerText = i - emptyDays;
+            // Event Day
+            const eventOfTheDay = events.find((e) => e.date == dateText);
+            // Holiday
+            const holidayOfTheDay = holidays.find((e) => e.hdate == dateText);
+
+            if (eventOfTheDay) {
+              const eventDiv = document.createElement("div");
+              eventDiv.classList.add("event");
+              eventDiv.innerText = eventOfTheDay.title;
+              dayBox.appendChild(eventDiv);
+            }
+
+            if (holidayOfTheDay) {
+              const eventDiv = document.createElement("div");
+              eventDiv.classList.add("event", "holiday");
+              eventDiv.innerText = holidayOfTheDay.holiday;
+              dayBox.appendChild(eventDiv);
+            }
+            if (day == i - emptyDays && navigation == 0) {
+              dayBox.id = "currentDay";
+            }
+          } else {
+            dayBox.classList.add("plain");
+          }
+          calendar.appendChild(dayBox);
+        }
+
+        document.querySelectorAll(".day").forEach((d) => {
+          d.addEventListener("click", function (e) {
+            clicked = `${this.innerText.padStart(2, "0")}-${monthVal}-${year}`;
+            const currentEvent = events.find((e) => e.date == clicked);
+            if (currentEvent) {
+              document.querySelector("#eventText").innerText = currentEvent.title;
+              document.querySelector("#viewEvent").style.display = "block";
+            } else {
+              document.querySelector("#addEvent").style.display = "block";
+            }
+            document.querySelector("#modal").style.display = "block";
+          });
+        });
+      }
+
+      function closeModal() {
+        document.querySelector("#addEvent").style.display = "none";
+        document.querySelector("#viewEvent").style.display = "none";
+        document.querySelector("#modal").style.display = "none";
+        loadCalendar();
+      }
+
+      document.querySelector("#btnNext").addEventListener("click", function () {
+        navigation++;
+        loadCalendar();
+      });
+
+      document.querySelector("#btnBack").addEventListener("click", function () {
+        navigation--;
+        loadCalendar();
+      });
+
+      document.querySelectorAll(".btnClose").forEach((closeBtn) => {
+        closeBtn.addEventListener("click", function () {
+          closeModal();
+        });
+      });
+
+      document.querySelector("#btnSave").addEventListener("click", function () {
+        const title = document.querySelector("#txtTitle").value.trim();
+        if (title == "") {
+          document.querySelector("#txtTitle").classList.add("error");
+          return false;
+        } else {
+          document.querySelector("#txtTitle").classList.remove("error");
+        }
+        events.push({
+          date: clicked,
+          title,
+        });
+        localStorage.setItem("events", JSON.stringify(events));
+        document.querySelector("#txtTitle").value = "";
+        closeModal();
+      });
+
+      document.querySelector("#btnDelete").addEventListener("click", function () {
+        events = events.filter((e) => e.date != clicked);
+        localStorage.setItem("events", JSON.stringify(events));
+        closeModal();
+      });
+
+      loadCalendar();
+    </script>
+  </body>
+</html>

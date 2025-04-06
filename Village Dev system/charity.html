@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Event for Villagers</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #d35400;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Decorative Red Pin Tag */
+        .pin-tag {
+            position: relative;
+            background-color: #f4d03f;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .pin-tag::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background-color: red;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .pin-tag::after {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background-color: red;
+        }
+
+        /* Section Backgrounds */
+        .highlights, .events, .contact {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #fef9e7;
+            border-radius: 10px;
+        }
+
+        /* Highlights Section */
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .highlights li {
+            background-color: #f9f9f9;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .highlights li:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlights li img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .highlights li h3 {
+            color: #e74c3c;
+        }
+
+        /* Events Section */
+        .events ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .events li {
+            background-color: #f6ddcc;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 4px solid #d35400;
+            border-radius: 8px;
+            display: inline-block;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .events li:hover {
+            transform: translateY(-5px);
+        }
+
+        .events li strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: #d35400;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
+        }
+
+        .contact p strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #d35400;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .highlights ul, .events ul {
+                display: block;
+            }
+
+            .highlights li, .events li {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Charity Event for Villagers</h1>
+    <p>Join us for a day of giving, as volunteers come together to support the village through donations, food drives, and essential services. Every contribution makes a difference in the lives of those in need.</p>
+
+    <!-- Decorative Pin Tag -->
+    <div class="pin-tag">Organized by Volunteers</div>
+
+    <!-- Highlights Section -->
+    <div class="highlights">
+        <h2>Event Highlights</h2>
+        <ul>
+            <li>
+                <img src="drive.jpg" alt="Donation Drive">
+                <h3>Donation Drive</h3>
+                <p>Contribute clothing, food, or funds to support the villagers in need.</p>
+            </li>
+            <li>
+                <img src="medical.jpg" alt="Free Medical Checkups">
+                <h3>Free Medical Checkups</h3>
+                <p>Volunteers and medical professionals offer health checkups for villagers.</p>
+            </li>
+            <li>
+                <img src="donate.jpg" alt="Food Distribution">
+                <h3>Food Distribution</h3>
+                <p>Enjoy free meals provided by local donors and volunteers.</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="events">
+        <h2>Upcoming Events</h2>
+        <ul>
+            <li>
+                <strong>Clothing Drive:</strong> October 8, 2024
+            </li>
+            <li>
+                <strong>Medical Checkup Camp:</strong> October 12, 2024
+            </li>
+            <li>
+                <strong>Food Distribution:</strong> October 15, 2024
+            </li>
+        </ul>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <p>For more information or to participate as a volunteer, please reach out to us:</p>
+        <p><strong>Phone:</strong> +123 456 789</p>
+        <p><strong>Email:</strong> charity@villageevent.org</p>
+        <p><strong>Office Hours:</strong> Monday to Friday, 9 AM - 6 PM</p>
+    </div>
+</div>
+
+</body>
+</html>

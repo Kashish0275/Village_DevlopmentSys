@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Website</title>
+    <style>
+        .content {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Website Title</h1>
+        <select id="language-selector">
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="mr">Marathi</option>
+        </select>
+    </header>
+
+    <main>
+        <div id="content-en" class="content">
+            <h2>Welcome</h2>
+            <p>This is an English website.</p>
+        </div>
+        <div id="content-hi" class="content">
+            <h2>स्वागत है</h2>
+            <p>यह एक हिंदी वेबसाइट है।</p>
+        </div>
+        <div id="content-mr" class="content">
+            <h2>स्वागत आहे</h2>
+            <p>हे एक मराठी वेबसाइट आहे.</p>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('language-selector').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            
+            // Hide all content
+            document.querySelectorAll('.content').forEach(function(content) {
+                content.classList.remove('active');
+            });
+            
+            // Show selected language content
+            document.getElementById(`content-${selectedLanguage}`).classList.add('active');
+        });
+
+        // Set default language
+        document.getElementById('language-selector').value = 'en';
+        document.getElementById('content-en').classList.add('active');
+    </script>
+</body>
+</html>

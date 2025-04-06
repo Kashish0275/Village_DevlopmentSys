@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate Page Example</title>
+    <script type="text/javascript">
+        function translatePage(language) {
+            var googleTranslateElement = document.createElement('script');
+            googleTranslateElement.type = 'text/javascript';
+            googleTranslateElement.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.body.appendChild(googleTranslateElement);
+
+            window.googleTranslateElementInit = function() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,hi,mr',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+
+                var translateElement = document.querySelector('.goog-te-combo');
+                if (translateElement) {
+                    translateElement.value = language;
+                    translateElement.dispatchEvent(new Event('change'));
+                }
+            };
+        }
+    </script>
+</head>
+
+<body onload="translatePage('hi')">
+    <header>
+        <h1>Magazine Name</h1>
+        <div id="google_translate_element"></div>
+    </header>
+    <main>
+        <article>
+            <h2>Article Title</h2>
+            <p><small>Published on September 4, 2024 by Author Name</small></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent auctor nisi nec libero egestas...</p>
+        </article>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily News Updates from Times of India</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #0056b3;
+            color: white;
+            margin: 0;
+        }
+        #news-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .news-item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+            padding: 15px;
+        }
+        .news-item:hover {
+            transform: translateY(-5px);
+        }
+        .news-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .news-link {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .news-link:hover {
+            background-color: #004080;
+        }
+        .news-date {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Daily News Updates from Times of India</h1>
+    <div id="news-container"></div>
+
+    <script>
+        async function fetchTOINews() {
+            const rssUrl = 'https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms';
+            const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
+
+            try {
+                const response = await fetch(proxyUrl);
+                const data = await response.json();
+                const newsContainer = document.getElementById('news-container');
+
+                if (data.items && data.items.length) {
+                    data.items.slice(0, 10).forEach(item => {
+                        const newsDiv = document.createElement('div');
+                        newsDiv.classList.add('news-item');
+
+                        const newsTitle = document.createElement('div');
+                        newsTitle.classList.add('news-title');
+                        newsTitle.textContent = item.title;
+
+                        const newsDate = document.createElement('div');
+                        newsDate.classList.add('news-date');
+                        newsDate.textContent = `Published on: ${new Date(item.pubDate).toLocaleDateString()}`;
+
+                        const newsLink = document.createElement('a');
+                        newsLink.classList.add('news-link');
+                        newsLink.href = item.link;
+                        newsLink.textContent = 'Read more';
+                        newsLink.target = '_blank';
+
+                        newsDiv.appendChild(newsTitle);
+                        newsDiv.appendChild(newsDate);
+                        newsDiv.appendChild(newsLink);
+                        newsContainer.appendChild(newsDiv);
+                    });
+                } else {
+                    newsContainer.innerHTML = '<p>No news available at the moment.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching news:', error);
+                document.getElementById('news-container').innerHTML = '<p>Failed to load news.</p>';
+            }
+        }
+
+        // Call the function when the page loads
+        fetchTOINews();
+    </script>
+
+</body>
+</html>

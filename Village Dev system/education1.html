@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Resources</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .subject-list {
+            margin-top: 20px;
+        }
+        .book-list {
+            margin-top: 10px;
+            display: none; /* Hidden by default */
+        }
+        .book, .video {
+            background: #e8f0fe;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #4a90e2;
+            transition: transform 0.2s;
+        }
+        .book:hover, .video:hover {
+            transform: scale(1.02);
+        }
+        .video-list {
+            margin-top: 40px;
+        }
+        .video {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .video-title {
+            font-weight: bold;
+        }
+        .video-link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Educational Resources for Village Students</h1>
+    
+    <label for="medium-select">Select Medium:</label>
+    <select id="medium-select" onchange="showSubjects()">
+        <option value="">--Select Medium--</option>
+        <option value="english">English</option>
+        <option value="hindi">Hindi</option>
+        <option value="marathi">Marathi</option>
+    </select>
+
+    <div class="subject-list" id="subject-list" style="display:none;">
+        <label for="subject-select">Select Subject:</label>
+        <select id="subject-select" onchange="showBooks()">
+            <option value="">--Select Subject--</option>
+        </select>
+    </div>
+
+    <div class="book-list" id="book-list">
+        <!-- Books will be displayed here -->
+    </div>
+
+    <div class="video-list" id="video-list">
+        <h2>Online Video Lectures</h2>
+        <div class="video">
+            <span class="video-title">Introduction to Mathematics (Std 5)</span>
+            <a href="https://www.example.com/video1" class="video-link" target="_blank">Watch</a>
+        </div>
+        <div class="video">
+            <span class="video-title">Science Basics (Std 6)</span>
+            <a href="https://www.example.com/video2" class="video-link" target="_blank">Watch</a>
+        </div>
+        <div class="video">
+            <span class="video-title">History Overview (Std 7)</span>
+            <a href="https://www.example.com/video3" class="video-link" target="_blank">Watch</a>
+        </div>
+        <div class="video">
+            <span class="video-title">Advanced Mathematics (Std 10)</span>
+            <a href="https://www.example.com/video4" class="video-link" target="_blank">Watch</a>
+        </div>
+        <!-- Add more video links as needed -->
+    </div>
+</div>
+
+<script>
+    const resources = {
+        english: {
+            Math: [
+                "Math Basics - Std 1",
+                
+                "Addition and Subtraction - Std 2",
+                "Multiplication and Division - Std 3",
+                "Fractions - Std 4",
+                "Decimals - Std 5",
+                "Geometry - Std 6",
+                "Algebra - Std 7",
+                "Statistics - Std 8",
+                "Advanced Mathematics - Std 9",
+                "Calculus - Std 10"
+            ],
+            Science: [
+                "Introduction to Science - Std 1",
+                "Living and Non-Living Things - Std 2",
+                "Plants and Animals - Std 3",
+                "Earth and Space - Std 4",
+                "Matter and Energy - Std 5",
+                "Human Body - Std 6",
+                "Forces and Motion - Std 7",
+                "Chemistry Basics - Std 8",
+                "Physics Fundamentals - Std 9",
+                "Advanced Science - Std 10"
+            ],
+            History: [
+                "Ancient Civilizations - Std 1",
+                "Medieval History - Std 2",
+                "Modern History - Std 3",
+                "World Wars - Std 4",
+                "Post-Colonialism - Std 5",
+                "History of Science - Std 6",
+                "Geopolitical Dynamics - Std 7",
+                "Contemporary History - Std 8",
+                "History of America - Std 9",
+                "Global History - Std 10"
+            ],
+            Geography: [
+                "Introduction to Geography - Std 1",
+                "Continents and Oceans - Std 2",
+                "Maps and Globes - Std 3",
+                "Physical Geography - Std 4",
+                "Human Geography - Std 5",
+                "Environmental Geography - Std 6",
+                "Geographical Systems - Std 7",
+                "Economic Geography - Std 8",
+                "Political Geography - Std 9",
+                "Advanced Geography - Std 10"
+            ],
+            Literature: [
+                "Children's Literature - Std 1",
+                "Poetry Basics - Std 2",
+                "Fables and Fairy Tales - Std 3",
+                "Classic Novels - Std 4",
+                "Short Stories - Std 5",
+                "Drama and Plays - Std 6",
+                "Literary Analysis - Std 7",
+                "Poetry Analysis - Std 8",
+                "Modern Literature - Std 9",
+                "Contemporary Literature - Std 10"
+            ],
+            Language: [
+                "English Grammar - Std 1",
+                "Vocabulary Building - Std 2",
+                "Basic Writing Skills - Std 3",
+                "Reading Comprehension - Std 4",
+                "Essay Writing - Std 5",
+                "Creative Writing - Std 6",
+                "Public Speaking - Std 7",
+                "Debating Skills - Std 8",
+                "Advanced Composition - Std 9",
+                "Research Writing - Std 10"
+            ],
+            MoralValues: [
+                "Understanding Values - Std 1",
+                "Respect and Kindness - Std 2",
+                "Honesty and Integrity - Std 3",
+                "Empathy and Compassion - Std 4",
+                "Civic Responsibility - Std 5",
+                "Conflict Resolution - Std 6",
+                "Leadership Qualities - Std 7",
+                "Environmental Responsibility - Std 8",
+                "Global Citizenship - Std 9",
+                "Ethics in Society - Std 10"
+            ],
+            GeneralKnowledge: [
+                "Introduction to GK - Std 1",
+                "Famous Personalities - Std 2",
+                "Inventions and Discoveries - Std 3",
+                "World Cultures - Std 4",
+                "Geography Trivia - Std 5",
+                "Current Affairs - Std 6",
+                "Science Facts - Std 7",
+                "Historical Events - Std 8",
+                "Political Systems - Std 9",
+                "Global Issues - Std 10"
+            ],
+            Computer: [
+                "Introduction to Computers - Std 1",
+                "Basic Computer Skills - Std 2",
+                "Internet Safety - Std 3",
+                "Word Processing - Std 4",
+                "Spreadsheets - Std 5",
+                "Presentation Software - Std 6",
+                "Programming Basics - Std 7",
+                "Web Development - Std 8",
+                "Data Science - Std 9",
+                "Advanced Computing - Std 10"
+            ]
+        },
+        hindi: {
+            गणित: [
+                "गणित मूल - कक्षा 1",
+                "जोड़ और घटाव - कक्षा 2",
+                "गुणा और भाग - कक्षा 3",
+                "भिन्न - कक्षा 4",
+                "दशमलव - कक्षा 5",
+                "ज्यामिति - कक्षा 6",
+                "बीजगणित - कक्षा 7",
+                "संख्यात्मकता - कक्षा 8",
+                "उन्नत गणित - कक्षा 9",
+                "कलन - कक्षा 10"
+            ],
+            विज्ञान: [
+                "विज्ञान का परिचय - कक्षा 1",
+                "जीवित और निर्जीव वस्तुएं - कक्षा 2",
+                "पौधे और जानवर - कक्षा 3",
+                "पृथ्वी और अंतरिक्ष - कक्षा 4",
+                "पदार्थ और ऊर्जा - कक्षा 5",
+                "मानव शरीर - कक्षा 6",
+                "बल और गति - कक्षा 7",
+                "रसायन विज्ञान के मूल - कक्षा 8",
+                "भौतिकी के मूल - कक्षा 9",
+                "उन्नत विज्ञान - कक्षा 10"
+            ],
+            // Add more subjects for Hindi as needed
+        },
+        marathi: {
+            गणित: [
+                "गणित मूल - इयत्ता 1",
+                "जोड आणि वजाबाकी - इयत्ता 2",
+                "गुणा आणि भाग - इयत्ता 3",
+                "भिन्न - इयत्ता 4",
+                "दशांश - इयत्ता 5",
+                "ज्यामिती - इयत्ता 6",
+                "बीजगणित - इयत्ता 7",
+                "संख्याशास्त्र - इयत्ता 8",
+                "उन्नत गणित - इयत्ता 9",
+                "कलन - इयत्ता 10"
+            ],
+            विज्ञान: [
+                "विज्ञानाचा परिचय - इयत्ता 1",
+                "जीव आणि निर्जीव गोष्टी - इयत्ता 2",
+                "पांढरे आणि जीव - इयत्ता 3",
+                "पृथ्वी आणि आकाश - इयत्ता 4",
+                "पदार्थ आणि ऊर्जा - इयत्ता 5",
+                "मानवी शरीर - इयत्ता 6",
+                "बल आणि गती - इयत्ता 7",
+                "रसायनशास्त्राच्या मूलभूत गोष्टी - इयत्ता 8",
+                "भौतिकशास्त्राचे मूल - इयत्ता 9",
+                "उन्नत विज्ञान - इयत्ता 10"
+            ],
+            // Add more subjects for Marathi as needed
+        }
+    };
+
+    function showSubjects() {
+        const medium = document.getElementById('medium-select').value;
+        const subjectList = document.getElementById('subject-list');
+        const subjectSelect = document.getElementById('subject-select');
+        subjectSelect.innerHTML = '<option value="">--Select Subject--</option>'; // Reset subjects
+        const bookList = document.getElementById('book-list');
+        bookList.innerHTML = ''; // Clear previous books
+        bookList.style.display = 'none'; // Hide book list
+
+        if (medium && resources[medium]) {
+            subjectList.style.display = 'block'; // Show subject list
+            for (let subject in resources[medium]) {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectSelect.appendChild(option);
+            }
+        } else {
+            subjectList.style.display = 'none'; // Hide if no medium is selected
+        }
+    }
+
+    function showBooks() {
+        const medium = document.getElementById('medium-select').value;
+        const subject = document.getElementById('subject-select').value;
+        const bookList = document.getElementById('book-list');
+        bookList.innerHTML = ''; // Clear previous books
+        bookList.style.display = 'none'; // Hide book list
+
+        if (medium && subject && resources[medium][subject]) {
+            resources[medium][subject].forEach(book => {
+                const bookItem = document.createElement('div');
+                bookItem.classList.add('book');
+                bookItem.textContent = book;
+                bookList.appendChild(bookItem);
+            });
+            bookList.style.display = 'block'; // Show book list
+        }
+    }
+</script>
+
+</body>
+</html>

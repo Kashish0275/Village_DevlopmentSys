@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Market Festival - Organized by Volunteers</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #3498db;
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Hero Image */
+        .hero {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://via.placeholder.com/1200x400?text=Village+Market+Festival');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Sections */
+        .highlights, .vendors, .events, .contact {
+            margin-top: 40px;
+        }
+
+        /* Highlights */
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .highlights li {
+            background-color: #f9f9f9;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .highlights li:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlights li img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Specific Class for Larger Image */
+        .highlight-big img {
+            width: 110%; /* Make it 10% bigger than others */
+        }
+
+        .highlights li h3 {
+            color: #3498db;
+        }
+
+        /* Vendors Section */
+        .vendors ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .vendors li {
+            background-color: #ecf0f1;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vendors li strong {
+            color: #2c3e50;
+        }
+
+        .vendors li a {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .vendors li a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Events Section */
+        .events ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .events li {
+            background-color: #e0f7fa;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            border-radius: 8px;
+            display: inline-block;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .events li:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #3a6ea5;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        .footer-help, .footer-contact, .footer-social {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        .footer-help h3, .footer-contact h3, .footer-social h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            color: #ffdf00;
+        }
+        .footer-help ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-help ul li {
+            margin-bottom: 10px;
+        }
+        .footer-help ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-help ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-contact p, .footer-social a {
+            margin: 5px 0;
+        }
+        .footer-social a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .footer-contact a {
+            color: #ffdf00;
+            text-decoration: none;
+        }
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+        .footer-social a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .highlights ul, .events ul {
+                display: block;
+            }
+
+            .highlights li, .events li {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .vendors li {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header with Navbar -->
+<header>
+    <nav>
+        <div class="logo">
+            <h1>Village Market</h1>
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <p>Welcome to our annual Village Market Festival, proudly organized by the hardworking volunteers of our village! Join us in celebrating local culture, food, and crafts. It's a wonderful opportunity to connect with the community and enjoy a day filled with activities for all ages.</p>
+
+    <!-- Hero Image -->
+    <div class="hero"></div>
+
+    <!-- Festival Highlights -->
+    <div class="highlights">
+        <h2>Market Highlights</h2>
+        <ul>
+            <li>
+                <img src="localCraft.jpg" alt="Local Crafts">
+                <h3>Local Crafts</h3>
+                <p>Explore handmade crafts from talented local artisans. Perfect for gifts or keepsakes!</p>
+            </li>
+            <li class="highlight-big">
+                <img src="Ffarm.avif" alt="Fresh Farm Produce">
+                <h3>Fresh Farm Produce</h3>
+                <p>Enjoy farm-fresh fruits, vegetables, and organic products grown right here in the village.</p>
+            </li>
+            <li>
+                <img src="foodstall.webp" alt="Food Stalls">
+                <h3>Delicious Food Stalls</h3>
+                <p>Taste the best of village cuisine, from traditional recipes.</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Vendor Information -->
+    <div class="vendors">
+        <h2>Meet Our Vendors</h2>
+        <ul>
+            <li><strong>Handmade Crafts by Alice</strong> <a href="#">Learn More</a></li>
+            <li><strong>Fresh Fruits & Vegetables by John's Farm</strong> <a href="#">Learn More</a></li>
+            <li><strong>Traditional Sweets by Sweet Delights</strong> <a href="#">Learn More</a></li>
+            <li><strong>Artisan Jewelry by Village Gems</strong> <a href="#">Learn More</a></li>
+        </ul>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="events">
+        <h2>Upcoming Events</h2>
+        <ul>
+            <li><strong>Crafts Workshop:</strong> October 10, 2024</li>
+            <li><strong>Farm-to-Table Cooking Class:</strong> October 12, 2024</li>
+            <li><strong>Farm Experience Day:</strong> October 15, 2024</li>
+        </ul>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Help Section -->
+            <div class="footer-help">
+                <h3>Help & Support</h3>
+                <ul>
+                    <li><a href="/help/using-the-system.html">How to Use the System</a></li>
+                    <li><a href="/help/faq.html">Frequently Asked Questions (FAQs)</a></li>
+                </ul>
+            </div>
+            <!-- Contact Information -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>If you have any questions or need assistance, please reach out to us:</p>
+                <p>Email: <a href="mailto:Kashish0275@gmail.com">Kashish0275@gmail.com</a></p>
+                <p>Email: <a href="mailto:Meghna.m.dolui@gmail.com">Meghna.m.dolui@gmail.com</a></p>
+                <p>Phone: 8779627227</p>
+                <p>Phone: 8169855640</p>
+            </div>
+            <!-- Social Media Section -->
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <a href="https://facebook.com/vdsystem">Facebook</a> |
+                <a href="https://twitter.com/vdsystem">Twitter</a> |
+                <a href="https://instagram.com/vdsystem">Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Village Development System. All rights reserved.
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

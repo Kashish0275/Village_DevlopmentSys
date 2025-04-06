@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Development System - Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            background: url('agriculture.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .header p {
+            margin: 5px 0 0;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #3a6ea5;
+            margin-top: 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #3a6ea5;
+            padding-bottom: 5px;
+        }
+        .feature {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .feature div {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(240, 244, 248, 0.9);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .feature div h3 {
+            color: #3a6ea5;
+            margin-top: 0;
+        }
+        .contact-info {
+            background-color: #3a6ea5;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .contact-info p {
+            margin: 0 0 10px;
+        }
+        .contact-info a {
+            color: #ffdf00;
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        .help-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 280px;
+            background-color: rgba(58, 110, 165, 0.85);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+           
+        }
+        .help-box h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        .help-box a {
+            color: #ffdf00;
+            text-decoration: none;
+        }
+        .help-box a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #3a6ea5;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        .footer-help, .footer-contact, .footer-social {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        .footer-help h3, .footer-contact h3, .footer-social h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            color: #ffdf00;
+        }
+        .footer-help ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-help ul li {
+            margin-bottom: 10px;
+        }
+        .footer-help ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-help ul li a:hover {
+            text-decoration: underline;
+        }
+        .footer-contact p, .footer-social a {
+            margin: 5px 0;
+        }
+        .footer-social a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .footer-contact a {
+            color: #ffdf00;
+            text-decoration: none;
+        }
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+        .footer-social a:hover {
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+        }
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            background-color: #3a6ea5;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .dropdown-btn .arrow-icon {
+            margin-left: 8px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+        }
+
+        .dropdown-btn:hover {
+            background-color: #3a6ea5;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .dropdown-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-content ul li {
+            padding: 8px 16px;
+        }
+
+        .dropdown-content ul li a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .dropdown-content ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown.show .dropdown-content {
+            display: block;
+        }
+        /* News Ticker */
+        .news-ticker {
+            background-color: #3a6ea5;
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        .ticker-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 20s linear infinite;
+        }
+        @keyframes ticker {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .translate-dropdown {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .translate-dropdown select {
+            padding: 5px;
+            font-size: 14px;
+            border: none;
+            background-color: #3a6ea5;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Village Development System</h1>
+        <p>Enhancing Community Well-being</p>
+    </div>
+    <!-- Translate Dropdown -->
+    <div class="translate-dropdown">
+        <select onchange="translatePage(this)">
+            <option value="">Translate</option>
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="mr">Marathi</option>
+        </select>
+    </div>
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <p>Stay updated with the latest news and announcements related to village development and community events. | New community project launched! | Join our upcoming workshop on sustainable farming.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Our Features</h2>
+            <div class="feature">
+                <!-- Community Projects Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-btn">Community Projects <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="community.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="senior citizen.html">Senior Citizen Facilities</a></li>
+                            <li><a href="cultural fes.html">Cultural Festivals </a></li>
+                            <li><a href="charity.html">Charity </a></li>
+                            <li><a href="market2.html">Farmer's Market </a></li>
+                        </ul>
+                    </div>
+                   
+                    <p>Information about ongoing and upcoming projects aimed at improving community infrastructure and services.</p>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropdown-btn">Volunteer Opportunities <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="Volunteer.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="https://www.example1.com">Join Us</a></li>
+                            <li><a href="https://www.example2.com">View Volunteer</a></li>
+                            <li><a href="https://www.example3.com">View User</a></li>
+                        </ul>
+                    </div>
+                    
+                   
+                        <p>Details on how to get involved with various community programs and make a difference in the village.</p>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Development Resources  <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="solarpanel.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="upcomming projects.html">Upcomming Projects</a></li>
+                            
+                        </ul>
+                    </div>
+                   
+                    <p>Access to resources, guidelines, and support for local development initiatives and programs.</p>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">GPS<i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="map.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="GPS/GPS/">GPS</a></li>
+                           
+                        </ul>
+                    </div>
+                    <p>Tools and technologies to help villagers navigate and manage land efficiently.</p>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Problems <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="problem.jpg"alt="Dropdown Image">
+                        <ul>
+                            <li><a href="add.html">Add Problems</a></li>
+                            <li><a href="view.html">View Problems</a></li>
+                            <li><a href="https://www.example3.com">solve Problems%</a></li>
+                        </ul>
+                    </div>
+                    <p>Report and track community issues that need attention and resolution.</p>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Weather <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="Weather.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="weather safety tips .html">Weather Safety Tips</a></li>
+                            <li><a href="weather alerts.html">Weather Alerts</a></li>
+                            <li><a href="https://www.example3.com">Weather Forecast</a></li>
+                            <li><a href="weather api/weather api/">Current Weather</a></li>
+                            
+                        </ul>
+                    </div>
+                    <p>Stay updated with the latest weather forecasts and alerts for the village area.</p>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Calender <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="calender.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="Calendar.html">Calender</a></li>
+                           
+                        </ul>
+                    </div>
+                    
+                    <p>Keep track of important dates and events within the village community.</p>
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Education <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="Education.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="education1.html">Online Videos</a></li>
+                            <li><a href="education1.html">Books</a></li>
+                            
+                           
+                        </ul>
+                    </div>
+                    
+                    <p>Providing PDF books and online videos up to standard 10 can enhance village education by offering essential learning resources.</p>
+
+
+
+
+
+
+                
+                </div>
+                <div class="dropdown">
+                    <button class="dropdown-btn">Feedback <i class="arrow-icon"></i></button>
+                    <div class="dropdown-content">
+                        <img src="feedback.jpg" alt="Dropdown Image">
+                        <ul>
+                            <li><a href="suggestion.html">Suggestion for improvement </a></li>
+                            <li><a href="report an issue.html">Report an Issue</a></li>
+                            <li><a href="volunteer exp1.html">Volunteer Experience</a></li>
+                            
+                            <li><a href="solution page.html">Solution </a></li>
+                        </ul>
+                    </div>
+                    <p>Provide your input and suggestions to help improve the village development efforts.</p>
+                </div>
+
+                    <div class="dropdown">
+                        <button class="dropdown-btn">Our Vission<i class="arrow-icon"></i></button>
+                        <div class="dropdown-content">
+                            <img src="vission.jpg" alt="Dropdown Image">
+                            <ul>
+                                <li><a href="https://www.example1.com">Our Goal </a></li>
+                               
+                            </ul>
+                        </div>
+                        <p>Learn more about our mission, vision, and the team behind the Village Development System.</p>
+                    </div>
+
+                <!-- Repeat the structure for other features as needed -->
+                <div>
+                    <h3>Latest News</h3>
+                    <p>Stay updated with the latest news and announcements related to village development and community events.</p>
+                    <li><a href="https://www.example1.com">News </a></li>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Help Section -->
+            <div class="footer-help">
+                <h3>Help & Support</h3>
+                <ul>
+                    <li><a href="/help/using-the-system.html">How to Use the System</a></li>
+                    <li><a href="/help/faq.html">Frequently Asked Questions (FAQs)</a></li>
+                </ul>
+            </div>
+              <!-- Contact Information -->
+              <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>If you have any questions or need assistance, please reach out to us:</p>
+                <p>Email: <a href="mailto:Kashish0275@gmail.com">Kashish0275@gmail.com</a></p>
+                <p>Email: <a href="mailto:Meghna.m.dolui@gmail.com">Meghna.m.dolui@gmail.com</a></p>
+                <p>Phone: 8779627227</p>
+                <p>Phone: 8169855640</p>
+            </div>
+            <!-- Social Media Section -->
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <a href="https://facebook.com/vdsystem">Facebook</a> |
+                <a href="https://twitter.com/vdsystem">Twitter</a> |
+                <a href="https://instagram.com/vdsystem">Instagram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Village Development System. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Dropdown toggle
+        document.querySelectorAll('.dropdown-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const dropdown = button.parentElement;
+                dropdown.classList.toggle('show');
+            });
+        });
+    </script>
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function translatePage(language) {
+            var googleTranslateElement = document.createElement('script');
+            googleTranslateElement.type = 'text/javascript';
+            googleTranslateElement.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.body.appendChild(googleTranslateElement);
+
+            window.googleTranslateElementInit = function() {
+                new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,hi,mr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+                var translateElement = document.querySelector('.goog-te-combo');
+                if (translateElement) {
+                    translateElement.value = language;
+                    translateElement.dispatchEvent(new Event('change'));
+                }
+            };
+        }
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Citizen Facilities - Community Projects</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Slider Styles */
+        .slider {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .btn-slide {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-slide.left {
+            left: 10px;
+        }
+
+        .btn-slide.right {
+            right: 10px;
+        }
+
+        /* Services Section */
+        .services, .involvement, .events, .contact {
+            margin-top: 40px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            display: flex;
+            align-items: center;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: translateY(-5px);
+        }
+
+        ul li strong {
+            color: #3498db;
+            margin-right: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 50px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-5px);
+        }
+
+        /* Events Section */
+        .events ul li {
+            background-color: #ecf0f1;
+            border-left: 4px solid #3498db;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .contact p {
+            margin-bottom: 10px;
+        }
+
+        .contact p strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #3498db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            ul li {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Senior Citizen Facilities</h1>
+    <p>Our village community is dedicated to improving the quality of life for our senior citizens. We provide support, care, and opportunities to ensure their well-being and active participation in the community.</p>
+
+    <!-- Image Slider -->
+    <div class="slider">
+        <button class="btn-slide left" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="btn-slide right" onclick="changeSlide(1)">&#10095;</button>
+        <div class="slides">
+            <img src="health checkup.jpg" alt="Health Checkup">
+            <img src="yoga.jpg" alt="Recreational Activities">
+            <img src="food helping.jpg" alt="Recreational Activities">
+            <img src="help1.jpg" alt="Recreational Activities">
+            <img src="" alt="Recreational Activities">
+            
+        </div>
+    </div>
+
+    <div class="services">
+        <h2>Key Services and Facilities</h2>
+        <ul>
+            <li><strong>Healthcare Support:</strong> Regular health check-up camps, discounted hospital treatments, and mobile health units.</li>
+            <li><strong>Recreational Activities:</strong> Senior clubs, weekly cultural events, games, yoga, and meditation sessions.</li>
+            <li><strong>Elderly Care Centers:</strong> Daycare facilities, counseling, meals, and nutrition programs.</li>
+            <li><strong>Pension and Financial Guidance:</strong> Assistance with pension schemes, financial literacy, and documentation.</li>
+            <li><strong>Home Support Services:</strong> Volunteers for home visits, assistance with chores, and delivery of essentials.</li>
+        </ul>
+    </div>
+
+    <div class="involvement">
+        <h2>How You Can Get Involved</h2>
+        <ul>
+            <li><strong>Volunteer:</strong> Help with senior citizen programs and provide support.</li>
+            <li><strong>Donate:</strong> Contributions go towards healthcare, recreational activities, and home care services.</li>
+            <li><strong>Sponsor:</strong> Sponsor a senior citizen's medical or daily needs.</li>
+        </ul>
+        <a href="#" class="btn">Get Involved</a>
+    </div>
+
+    <div class="events">
+        <h2>Upcoming Events</h2>
+        <ul>
+            <li><strong>Health Check-up Camp:</strong> October 15, 2024</li>
+            <li><strong>Senior Citizens' Day Celebration:</strong> November 1, 2024</li>
+            <li><strong>Yoga and Wellness Workshop:</strong> December 5, 2024</li>
+        </ul>
+    </div>
+
+    <div class="contact">
+        <h2>Contact Us</h2>
+        <p>For more details on senior citizen facilities or to get involved, reach out at:</p>
+        <p><strong>Phone:</strong> +123 456 789</p>
+        <p><strong>Email:</strong> info@villagecommunity.org</p>
+        <p><strong>Office Hours:</strong> Monday to Friday, 9 AM - 5 PM</p>
+    </div>
+</div>
+
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelector('.slides');
+
+    function showSlides() {
+        const totalSlides = slides.children.length;
+        slideIndex = (slideIndex + 1) % totalSlides;
+        slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+    }
+
+    function changeSlide(n) {
+        const totalSlides = slides.children.length;
+        slideIndex = (slideIndex + n + totalSlides) % totalSlides;
+        slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+    }
+
+    setInterval(showSlides, 5000); // Change slide every 5 seconds
+</script>
+
+</body>
+</html>

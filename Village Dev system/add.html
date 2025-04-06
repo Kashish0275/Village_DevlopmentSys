@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Problem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+
+        .content {
+            padding: 20px;
+            margin: 0 auto;
+            width: 80%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        input, button {
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Add a Problem</h2>
+        <div class="form-container">
+            <input type="text" id="email" placeholder="User Email" required>
+            <input type="text" id="problemTitle" placeholder="Problem Title" required>
+            <input type="text" id="problemDescription" placeholder="Problem Description" required>
+            <!-- Volunteer Selection -->
+            <select id="volunteer" required>
+                <option value="">Select Volunteer</option>
+                <option value="volunteer1">Aastha1@gmail.com</option>
+                <option value="volunteer2">Rutu3@gmail.com</option>
+                <option value="volunteer3">Ganguli4@gmail.com</option>
+            </select>
+            <button onclick="addProblem()">Add Problem</button>
+        </div>
+    </div>
+
+    <script>
+        function addProblem() {
+            var email = document.getElementById('email').value;
+            var title = document.getElementById('problemTitle').value;
+            var description = document.getElementById('problemDescription').value;
+            var volunteer = document.getElementById('volunteer').value;
+
+            if (email && title && description && volunteer) {
+                var problem = {
+                    email: email,
+                    title: title,
+                    description: description,
+                    volunteer: volunteer,
+                };
+
+                // Get existing problems from localStorage or create an empty array if none exist
+                var problems = JSON.parse(localStorage.getItem('problems')) || [];
+
+                // Add the new problem to the array
+                problems.push(problem);
+
+                // Save the updated problems array to localStorage
+                localStorage.setItem('problems', JSON.stringify(problems));
+
+                // Clear form inputs
+                document.getElementById('email').value = '';
+                document.getElementById('problemTitle').value = '';
+                document.getElementById('problemDescription').value = '';
+                document.getElementById('volunteer').value = '';
+
+                alert('Problem added successfully!');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    </script>
+</body>
+</html>

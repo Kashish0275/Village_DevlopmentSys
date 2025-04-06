@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .solution-form-container {
+            background-color: #fff;
+            padding: 30px; /* Reduced padding */
+            border-radius: 10px; /* Reduced border radius */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px; /* Reduced width */
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .solution-form-container:hover {
+            transform: scale(1.02); /* Slightly smaller hover effect */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px; /* Reduced margin */
+        }
+
+        .icon {
+            display: block;
+            margin: 0 auto 10px; /* Reduced margin */
+            width: 50px; /* Reduced icon size */
+            height: 50px;
+            background: url('https://img.icons8.com/cotton/64/000000/solution.png') no-repeat center;
+            background-size: contain;
+        }
+
+        label {
+            font-weight: 500;
+            color: #333;
+            margin-top: 10px; /* Reduced margin */
+            display: block;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px; /* Reduced padding */
+            margin-top: 5px;
+            margin-bottom: 15px; /* Reduced margin */
+            border: 1.5px solid #ddd; /* Reduced border size */
+            border-radius: 8px; /* Slightly smaller border radius */
+            font-size: 14px; /* Reduced font size */
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            border-color: #71b7e6;
+            background-color: #fff;
+            outline: none;
+            box-shadow: 0 0 6px rgba(113, 183, 230, 0.4); /* Reduced shadow */
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            color: #fff;
+            border: none;
+            padding: 12px; /* Reduced padding */
+            font-size: 16px; /* Reduced font size */
+            border-radius: 8px; /* Slightly smaller border radius */
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #9b59b6, #71b7e6);
+            transform: translateY(-4px); /* Slightly smaller hover effect */
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .solution-form-container::before {
+            content: '';
+            position: absolute;
+            top: -40px; /* Adjusted position */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Reduced size */
+            height: 100px;
+            background: linear-gradient(135deg, #9b59b6, #71b7e6);
+            border-radius: 50%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="solution-form-container">
+        <div class="icon"></div>
+        <h2>Submit Your Solution</h2>
+        <form action="/submit-solution" method="post">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            
+            <label for="solution">Proposed Solution:</label>
+            <textarea id="solution" name="solution" rows="5" placeholder="Describe your solution here..." required></textarea>
+
+            <button type="submit">Submit Solution</button>
+        </form>
+    </div>
+</body>
+</html>

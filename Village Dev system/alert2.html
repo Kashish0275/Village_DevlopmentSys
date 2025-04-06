@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumbai Weather Alerts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .weather-alerts {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .alert strong {
+            display: block;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mumbai Weather Alerts</h1>
+    <div class="weather-alerts" id="weather-alerts">
+        <p>Loading weather alerts...</p>
+    </div>
+
+    <script>
+        const apiKey = 'YOUR_API_KEY';  // Replace with your OpenWeatherMap API Key
+        const lat = 19.076; // Latitude for Mumbai
+        const lon = 72.8777; // Longitude for Mumbai
+
+        // Function to fetch weather data
+        const fetchWeatherData = async (city, apiKey) => {
+            const baseURL = 'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=current,minutely,hourly,daily&appid={API_KEY}';
+            const url = `${baseURL}?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`;
+            const response = await fetch(url);
+            return response;
+        };
+
+        // Function to fetch weather alerts
+        async function fetchWeatherAlerts() {
+            try {
+                const response = await fetchWeatherData(city, apiKey);
+
+                if (!response.ok) {
+                    throw new Error('City not found or invalid API key.');
+                }
+
+                const data = await response.json();
+                displayWeatherAlerts(data);
+            } catch (error) {
+                weatherAlertsDiv.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+
+        // Function to display weather alerts
+        function displayWeatherAlerts(data) {
+            const today = new Date();
+            const alerts = [];
+
+            // Loop through the 5-day forecast (every 3 hours)
+            data.list.forEach(item => {
+                const date = new Date(item.dt * 1000);
+                const weather = item.weather[0].description;
+
+                // Only show alerts for today and the next 4 days
+                if (date >= today && date <= new Date(today.getTime() + (5 * 24 * 60 * 60 * 1000))) {
+                    alerts.push({
+                        date: date.toLocaleDateString(),
+                        weather: weather.charAt(0).toUpperCase() + weather.slice(1), // Capitalize the first letter
+                    });
+                }
+            });
+
+            // Clear the existing content
+            weatherAlertsDiv.innerHTML = '';
+
+            if (alerts.length > 0) {
+                const uniqueAlerts = [...new Set(alerts.map(a => JSON.stringify(a)))].map(a => JSON.parse(a));
+                uniqueAlerts.forEach(alert => {
+                    const alertDiv = document.createElement('div');
+                    alertDiv.className = 'alert';
+                    alertDiv.innerHTML = `<strong>Date: ${alert.date}</strong> Weather: ${alert.weather}`;
+                    weatherAlertsDiv.appendChild(alertDiv);
+                });
+            } else {
+                weatherAlertsDiv.innerHTML = '<p>No alerts for the next 5 days.</p>';
+            }
+        }
+
+        // Fetch the weather alerts on page load
+        window.onload = fetchWeatherAlerts;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problems Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+
+        .content {
+            padding: 20px;
+            margin: 0 auto;
+            width: 80%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: orange;
+            color: white;
+        }
+
+        .solve-btn, .cannot-solve-btn {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .solve-btn {
+            background-color: green;
+            color: white;
+        }
+
+        .cannot-solve-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .form-container input, .form-container button {
+            padding: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Add Problems</h2>
+
+        <!-- Form to add a new problem -->
+        <div class="form-container">
+            <input type="text" id="email" placeholder="User Email" required>
+            <input type="text" id="problemTitle" placeholder="Problem Title" required>
+            <input type="text" id="problemDescription" placeholder="Problem Description" required>
+            <button onclick="addProblem()">Add Problem</button>
+        </div>
+
+        <table id="problemsTable">
+            <thead>
+                <tr>
+                    <th>User Email</th>
+                    <th>Problem Title</th>
+                    <th>Problem Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function addProblem() {
+            // Get form input values
+            var email = document.getElementById('email').value;
+            var title = document.getElementById('problemTitle').value;
+            var description = document.getElementById('problemDescription').value;
+
+            if(email && title && description) {
+                // Create new row
+                var table = document.getElementById('problemsTable').getElementsByTagName('tbody')[0];
+                var newRow = table.insertRow();
+
+                // Insert cells into the row
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+
+                // Add the data to the cells
+                cell1.innerHTML = email;
+                cell2.innerHTML = title;
+                cell3.innerHTML = description;
+                cell4.innerHTML = '<button class="solve-btn">Solve</button> <button class="cannot-solve-btn">Cannot Solve</button>';
+
+                // Clear form inputs
+                document.getElementById('email').value = '';
+                document.getElementById('problemTitle').value = '';
+                document.getElementById('problemDescription').value = '';
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+    </script>
+</body>
+</html>

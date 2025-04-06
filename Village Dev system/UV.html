@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Development System</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: url('pic.avif') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .box {
+            background-color: rgba(255, 255, 255, 0); /* Semi-transparent white */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.296);
+            text-align: center;
+            padding: 30px;
+            width: 250px;
+            position: relative;
+        }
+
+        .box img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .box button {
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .box button:hover {
+            background-color: #0056b3;
+        }
+
+        .box a {
+            text-decoration: none;
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%; /* Position above the button */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            width: 200px;
+        }
+
+        .box:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* Arrow pointing downwards */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #5555554a transparent transparent transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1>Village Development System</h1>
+    <div class="container">
+        <div class="box">
+            <img src="user.jfif" alt="User Icon">
+            <a href="User login.html">
+                <button>User</button>
+            </a>
+            <div class="tooltip">Join us as a user so we can help u and make a difference!</div>
+        </div>
+        <div class="box">
+            <img src="user.jfif" alt="Volunteer Icon">
+            <a href="Volunteer Login.html">
+                <button>Volunteer</button>
+            </a>
+            <div class="tooltip">Join us as a volunteer to contribute to village development projects and make a difference!</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Development System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            background-color: #ff6600;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .navbar {
+            background-color: orange;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .content {
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: orange;
+            color: white;
+        }
+
+        .solve-btn, .cannot-solve-btn {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .solve-btn {
+            background-color: green;
+            color: white;
+        }
+
+        .cannot-solve-btn {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Village Development System</h1>
+    </div>
+
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Add Users</a>
+        <a href="#">View Users</a>
+        <a href="#">Add Programs</a>
+        <a href="#">View Programs</a>
+        <a href="#">Add Villages</a>
+        <a href="#">View Problems</a>
+        <a href="#">View Feedback</a>
+        <a href="#">Logout</a>
+    </div>
+
+    <div class="content">
+        <h2>View Problems</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>User Email</th>
+                    <th>Problem Title</th>
+                    <th>Problem Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>prvsumaresu976@gmail.com</td>
+                    <td>Pension</td>
+                    <td>There is a delay in giving pension</td>
+                    <td><button class="solve-btn">Solve</button> <button class="cannot-solve-btn">Cannot Solve</button></td>
+                </tr>
+                <tr>
+                    <td>prvsumaresu976@gmail.com</td>
+                    <td>Pension</td>
+                    <td>Not getting pension correctly</td>
+                    <td><button class="solve-btn">Solve</button> <button class="cannot-solve-btn">Cannot Solve</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
